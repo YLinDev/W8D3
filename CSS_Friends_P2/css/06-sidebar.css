@@ -52,3 +52,28 @@ ul {
     transform: rotate(-45deg) translateX(-25%);
     box-shadow: 0 1px 0 0 #070;
 }
+
+.profile-picture {
+    overflow: hidden;
+}
+
+.thumb {
+    display: block;
+    position: relative;
+    width: 58px; 
+    height: 58px;
+    border: 1px solid black;
+    border-radius: 5px; 
+}
+
+.profile-friends > li {
+    float: left;
+    width: 60px; 
+    margin: 0 0 10px 0; 
+}
+
+.group:after {
+    content: "";
+    display: block;
+    clear: both; 
+}
