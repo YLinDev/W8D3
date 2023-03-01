@@ -74,10 +74,10 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
-  if (!this.grid[pos[0]][pos[1]]){
+  if (!this.isValidPos(pos)){
     return false; 
   }
-  if (this.grid[pos[0]][pos[1]].color === color){
+  if (this.grid[pos[0]][pos[1]] && this.grid[pos[0]][pos[1]].color === color){
     return true; 
   } 
   return false; 
@@ -106,32 +106,37 @@ Board.prototype.isOccupied = function (pos) {
  *
  * Returns empty array if no pieces of the opposite color are found.
  */
-Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
-  let result = [];
-  
-  if (!this.isValidPos(pos)){
-    return result;
-  }
-
+Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip=[]){
   let newX = (pos[0] + dir[0]);
   let newY = (pos[1] + dir[1]);
-
-  if (!this.isMine([newX, newY], color)){
-    return result;
+  
+  if (!this.isValidPos(pos)){
+    return [];
   }
 
-  if (this.getPiece([newX,newY]).color !== color){
-    return result;
+  if (!this.grid[newX,newY]){
+    return [];
   }
 
-  // while (this.isValidPos([newX,newY])){
-  //   if (this.getPiece([newX,newY]).oppColor === color){
-  //     result.push([newX,newY]);
-  //   }
+  if (this.isMine([newX, newY], color)){
+    return piecesToFlip;
+  } 
+  else {
+    debugger
+    piecesToFlip.push([newX, newY])
+    return this._positionsToFlip([newX,newY], color, dir, piecesToFlip);
+  }
+
+  // if (this.getPiece([newX,newY]).color !== color){
+  //   return result;
+  // }
+
+  // while (this.isValidPos([newX,newY]) && !this.isMine([newX, newY], color)){
+  //   piecesToFlip.push([newX,newY]);
   //   newX += dir[0];
   //   newY += dir[1];
   // }
-  // return result; 
+  // return piecesToFlip; 
 };
 
 /**
