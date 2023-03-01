@@ -61,7 +61,12 @@ Board.prototype.isValidPos = function (pos) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
-  
+  if (this.isValidPos(pos)) {
+    return this.grid[pos[0]][pos[1]];
+  } 
+  else {
+    throw new Error("Not valid pos!");
+  }
 };
 
 /**
@@ -69,12 +74,23 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  if (!this.grid[pos[0]][pos[1]]){
+    return false; 
+  }
+  if (this.grid[pos[0]][pos[1]].color === color){
+    return true; 
+  } 
+  return false; 
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  if (this.grid[pos[0]][pos[1]]){
+    return true; 
+  }
+  return false; 
 };
 
 /**
