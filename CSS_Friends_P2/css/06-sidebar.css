@@ -1,1 +1,54 @@
 /* PHASE 0: Sidebar */
+
+.profile-picture {
+    display: block;
+    position: relative;
+    margin-top: -100px;
+}
+
+.profile-info > h2 {
+    font-size: xx-large;
+    font-weight: bold;
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    justify-content: flex-start;
+}
+
+ul {
+    list-style: none;
+}
+
+.profile-nav {
+    margin: 20px 0;
+}
+
+.profile-nav a {
+    display: block; 
+    padding: 5px;
+    font-weight: 700;
+}
+
+.profile-nav li:last-child {
+    border-bottom: 1px solid rgb(168, 167, 167);
+}
+
+.profile-nav li {
+    border-top: 1px solid rgb(168, 167, 167);
+}
+
+.online {
+    display: block;
+    font-size: 12px;
+    top: -10px;
+    left: -10px; 
+    font-weight: 700;
+    position: absolute;
+    color: white;
+    padding: 5px 30px;
+    text-transform: uppercase;
+    background: #0c0;
+    letter-spacing: 3px;
+    transform: rotate(-45deg) translateX(-25%);
+    box-shadow: 0 1px 0 0 #070;
+}
